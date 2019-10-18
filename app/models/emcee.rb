@@ -1,0 +1,2 @@
+class Emcee < ApplicationRecord
+end
