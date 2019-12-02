@@ -17,7 +17,7 @@ class EmceesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create emcee" do
     assert_difference('Emcee.count') do
-      post emcees_url, params: { emcee: { email: @emcee.email, name: @emcee.name, password: @emcee.password } }
+      post emcees_url, params: { emcee: { email: 'example2@example.com', name: @emcee.name, password: 'imabeast' } }
     end
 
     assert_redirected_to emcee_url(Emcee.last)
@@ -34,7 +34,7 @@ class EmceesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update emcee" do
-    patch emcee_url(@emcee), params: { emcee: { email: @emcee.email, name: @emcee.name, password: @emcee.password } }
+    patch emcee_url(@emcee), params: { emcee: { email: @emcee.email, name: @emcee.name, password: 'imabeast' } }
     assert_redirected_to emcee_url(@emcee)
   end
 

@@ -25,7 +25,6 @@ class EmceesController < ApplicationController
   # POST /emcees.json
   def create
     @emcee = Emcee.new(emcee_params)
-
     respond_to do |format|
       if @emcee.save
         format.html { redirect_to @emcee, notice: 'Emcee was successfully created.' }
@@ -69,6 +68,6 @@ class EmceesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def emcee_params
-      params.require(:emcee).permit(:name, :email, :password)
+      params.require(:emcee).permit(:name, :email, :password, :password_confirmation)
     end
 end
