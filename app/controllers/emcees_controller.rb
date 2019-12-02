@@ -60,7 +60,9 @@ class EmceesController < ApplicationController
     end
   end
 
+
   private
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_emcee
       @emcee = Emcee.find(params[:id])
@@ -71,3 +73,4 @@ class EmceesController < ApplicationController
       params.require(:emcee).permit(:name, :email, :password, :password_confirmation)
     end
 end
+
