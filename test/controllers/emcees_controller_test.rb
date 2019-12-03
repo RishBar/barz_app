@@ -17,10 +17,31 @@ class EmceesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create emcee" do
     assert_difference('Emcee.count') do
-      post emcees_url, params: { emcee: { email: 'example2@example.com', name: @emcee.name, password: 'imabeast' } }
+      post emcees_url, params: { emcee: { email: 'example2@example.com', name: @emcee.name, password: 'imabeast1234' } }
     end
 
     assert_redirected_to emcee_url(Emcee.last)
+  end
+
+  test "should not create emcee if email is invalid" do
+    assert_no_difference('Emcee.count') do
+      post emcees_url, params: { emcee: { email: 'example2example.com', name: @emcee.name, password: 'imabeast1234' } }
+    end
+    assert_template 'new'
+  end
+
+  test "should not create emcee if name is invalid" do
+    assert_no_difference('Emcee.count') do
+      post emcees_url, params: { emcee: { email: 'example2@example.com', name: '', password: 'imabeast1234' } }
+    end
+    assert_template 'new'
+  end
+
+  test "should not create emcee if password is invalid" do
+    assert_no_difference('Emcee.count') do
+      post emcees_url, params: { emcee: { email: 'example2@example.com', name: @emcee.name, password: 'i' } }
+    end
+    assert_template 'new'
   end
 
   test "should show emcee" do
@@ -34,7 +55,7 @@ class EmceesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update emcee" do
-    patch emcee_url(@emcee), params: { emcee: { email: @emcee.email, name: @emcee.name, password: 'imabeast' } }
+    patch emcee_url(@emcee), params: { emcee: { email: @emcee.email, name: @emcee.name, password: 'imabeast1234' } }
     assert_redirected_to emcee_url(@emcee)
   end
 

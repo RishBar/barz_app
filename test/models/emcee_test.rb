@@ -3,7 +3,7 @@ require 'test_helper'
 class EmceeTest < ActiveSupport::TestCase
   
   def setup
-    @emcee = Emcee.new(name: "Example emcee", email: "emcee@example.com", password: 'imabeast')
+    @emcee = Emcee.new(name: "Example emcee", email: "emcee@example.com", password: 'imabeast1234')
   end
 
   test "should be valid" do
