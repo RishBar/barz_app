@@ -1,15 +1,15 @@
 <% provide(:title, @emcee.name) %>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @emcee.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @emcee.email %>
-</p>
-
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @emcee %>
+        <%= @emcee.name %>
+      </h1>
+    </section>
+  </aside>
+</div>
 <%= link_to 'Edit', edit_emcee_path(@emcee) %> |
 <%= link_to 'Back', emcees_path %>
