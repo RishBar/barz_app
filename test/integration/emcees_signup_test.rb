@@ -22,7 +22,7 @@ class EmceesSignupTest < ActionDispatch::IntegrationTest
                                          password_confirmation: "password123" } }
     end
     follow_redirect!
-    assert_template 'emcees/show'
+    assert_template 'show'
   end
 end
 require 'test_helper'
