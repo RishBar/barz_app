@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'rails',                      '6.0.0'
+gem 'rails',                      '6.0.1'
 gem 'image_processing',           '1.9.3'
 gem 'mini_magick',                '4.9.5'
 gem 'active_storage_validations', '0.8.2'
@@ -20,8 +20,6 @@ gem 'bootsnap',                   '1.4.4', require: false
 group :development, :test do
   gem 'sqlite3', '1.4.1'
   gem 'byebug',  '11.0.1', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'pry'
-  gem 'pry-nav'
 end
 
 group :development do
@@ -45,7 +43,6 @@ end
 group :production do
   gem 'pg',         '1.1.4'
   gem 'aws-sdk-s3', '1.46.0', require: false
-  gem 'puma',                       '3.12.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
