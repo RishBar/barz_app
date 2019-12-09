@@ -2,12 +2,14 @@
 
 one:
   name: MyString
-  email: MyString@example.com
-  password_digest: whatever
-  password_confirmation: whatever
+  email: mystring@example.com
+  password_digest: <%= Emcee.digest('password123') %>
+  password_confirmation: password123
 
 two:
-  name: MyString1
-  email: MyString1@example.com
-  password_digest: whatever
-  password_confirmation: whatever
+  name: MyString2
+  email: mystring2@example.com
+  password_digest: <%= Emcee.digest('password1234') %>
+  password_confirmation: password1234
+
+
