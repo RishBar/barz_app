@@ -27,6 +27,7 @@ class EmceesController < ApplicationController
     @emcee = Emcee.new(emcee_params)
     respond_to do |format|
       if @emcee.save
+        log_in @emcee
         format.html { redirect_to @emcee, notice: 'Emcee was successfully created.' }
         format.json { render :show, status: :created, location: @emcee }
       else

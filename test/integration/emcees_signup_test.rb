@@ -12,7 +12,7 @@ class EmceesSignupTest < ActionDispatch::IntegrationTest
     assert_template 'new'
   end
 
-class EmceesSignupTest < ActionDispatch::IntegrationTest
+
   test "valid signup information" do
     get new_emcee_path
     assert_difference 'Emcee.count', 1 do
@@ -23,8 +23,6 @@ class EmceesSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'show'
+    assert is_logged_in?
   end
-end
-require 'test_helper'
-  
 end
