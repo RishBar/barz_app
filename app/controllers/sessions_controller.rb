@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     emcee = Emcee.find_by(email: params[:session][:email].downcase)
-    if emcee && emcee.authenticate(params[:session][:password])
+    if emcee&.authenticate(params[:session][:password])
       log_in emcee
       redirect_to emcee
     else
@@ -17,5 +18,4 @@ class SessionsController < ApplicationController
     log_out
     redirect_to root_url
   end
-
 end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class EmceesController < ApplicationController
-  before_action :set_emcee, only: [:show, :edit, :update, :destroy]
+  before_action :set_emcee, only: %i[show edit update destroy]
 
   # GET /emcees
   # GET /emcees.json
@@ -9,8 +11,7 @@ class EmceesController < ApplicationController
 
   # GET /emcees/1
   # GET /emcees/1.json
-  def show
-  end
+  def show; end
 
   # GET /emcees/new
   def new
@@ -18,8 +19,7 @@ class EmceesController < ApplicationController
   end
 
   # GET /emcees/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /emcees
   # POST /emcees.json
@@ -61,17 +61,15 @@ class EmceesController < ApplicationController
     end
   end
 
-
   private
-    
-    # Use callbacks to share common setup or constraints between actions.
-    def set_emcee
-      @emcee = Emcee.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def emcee_params
-      params.require(:emcee).permit(:name, :email, :password, :password_confirmation)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_emcee
+    @emcee = Emcee.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def emcee_params
+    params.require(:emcee).permit(:name, :email, :password, :password_confirmation)
+  end
 end
-
