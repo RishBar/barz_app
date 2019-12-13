@@ -36,4 +36,3 @@ yarn-debug.log*
 .yarn-integrity
 
 #ignore Gemfile.lock because if someone pulls my code onto a computer with no gems, and they run bundle install to get the gems, the gemfile.lock file will tell your computer all the gems are already installed when they are not
-Gemfile.lock
