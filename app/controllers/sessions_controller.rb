@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     emcee = Emcee.find_by(email: params[:session][:email].downcase)
     if emcee&.authenticate(params[:session][:password])
       log_in emcee
+      remember emcee
       redirect_to emcee
     else
       flash.now[:danger] = 'Invalid email/password combination'
