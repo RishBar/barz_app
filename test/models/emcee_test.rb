@@ -55,4 +55,8 @@ class EmceeTest < ActiveSupport::TestCase
     @emcee.save
     assert_not duplicate_emcee.valid?
   end
+
+  test "authenticated? should return false for a emcee with nil digest" do
+    assert_not @emcee.authenticated?('')
+  end
 end

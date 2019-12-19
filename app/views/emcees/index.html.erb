@@ -16,11 +16,9 @@
       <tr>
         <td><%= emcee.name %></td>
         <td><%= emcee.email %></td>
-        <%# <% if logged_in? && current_emcee == emcee %>% %>
-          <td><%= link_to 'Show', emcee %></td>
-          <td><%= link_to 'Edit', edit_emcee_path(emcee) %></td>
-          <td><%= link_to 'Destroy', emcee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <td><%= link_to 'Show', emcee %></td>
+        <td><%= link_to 'Edit', edit_emcee_path(emcee) %></td>
+        <td><%= link_to 'Destroy', emcee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
