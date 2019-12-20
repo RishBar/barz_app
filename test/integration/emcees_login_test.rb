@@ -37,4 +37,18 @@ class EmceesLoginTest < ActionDispatch::IntegrationTest
     get root_path
     assert flash.empty?
   end
+
+  test "login with remembering" do
+    log_in_as(@emcee, password: 'password1234', remember_me: '1')
+    #debugger
+    assert_not_empty cookies[:remember_token]
+  end
+
+  test "login without remembering" do
+    # Log in to set the cookie.
+    log_in_as(@emcee, password: 'password1234', remember_me: '1')
+    # Log in again and verify that the cookie is deleted.
+    log_in_as(@emcee, password: 'password1234', remember_me: '0')
+    assert_empty cookies[:remember_token]
+  end
 end
