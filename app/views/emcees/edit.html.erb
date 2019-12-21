@@ -2,5 +2,10 @@
 
 <%= render 'form', emcee: @emcee %>
 
+<div class="gravatar_edit">
+  <%= gravatar_for @emcee %>
+  <a href="https://gravatar.com/emails" target="_blank">change</a>
+</div>
+
 <%= link_to 'Show', @emcee %> |
 <%= link_to 'Back', emcees_path %>
