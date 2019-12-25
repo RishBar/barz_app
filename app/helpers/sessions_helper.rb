@@ -25,6 +25,10 @@ module SessionsHelper
     end
   end
 
+  def current_emcee?(emcee)
+    emcee && emcee == current_emcee
+  end
+
   def logged_in?
     !current_emcee.nil?
   end
@@ -39,5 +43,16 @@ module SessionsHelper
     forget(current_emcee)
     session.delete(:emcee_id)
     @current_emcee = nil
+  end
+
+    # Redirects to stored location (or to the default).
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+  
+    # Stores the URL trying to be accessed.
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
   end
 end

@@ -2,6 +2,8 @@
 
 class EmceesController < ApplicationController
   before_action :set_emcee, only: %i[show edit update destroy]
+  before_action :logged_in_emcee, only: [:index, :edit, :update]
+  before_action :correct_emcee,   only: [:edit, :update]
 
   # GET /emcees
   # GET /emcees.json
@@ -30,6 +32,7 @@ class EmceesController < ApplicationController
         log_in @emcee
         format.html { redirect_to @emcee, notice: 'Emcee was successfully created.' }
         format.json { render :show, status: :created, location: @emcee }
+        redirect_back_or emcee
       else
         format.html { render :new }
         format.json { render json: @emcee.errors, status: :unprocessable_entity }
@@ -71,5 +74,18 @@ class EmceesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def emcee_params
     params.require(:emcee).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def logged_in_emcee
+    unless logged_in?
+      store_location
+      flash[:danger] = "Please log in."
+      redirect_to login_url
+    end
+  end
+
+  def correct_emcee
+    @emcee = Emcee.find(params[:id])
+    redirect_to(root_url) && flash[:danger] = "what the hell bro" unless current_emcee?(@emcee)
   end
 end

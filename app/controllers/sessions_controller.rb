@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    emcee = Emcee.find_by(email: params[:session][:email].downcase)
-    if emcee&.authenticate(params[:session][:password])
+    emcee = Emcee.find_by(email: params.require(:session).permit(:email)[:email].downcase)
+    if emcee&.authenticate(params.require(:session).permit(:password)[:password])
       log_in emcee
       params[:session][:remember_me] == '1' ? remember(emcee) : forget(emcee)
       redirect_to emcee

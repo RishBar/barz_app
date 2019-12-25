@@ -1,29 +1,12 @@
 <p id="notice"><%= notice %></p>
+<% provide(:title, 'All emcees') %>
+<h1>All Emcees</h1>
 
-<h1>Emcees</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @emcees.each do |emcee| %>
-      <tr>
-        <td><%= emcee.name %></td>
-        <td><%= emcee.email %></td>
-        <td><%= link_to 'Show', emcee %></td>
-        <td><%= link_to 'Edit', edit_emcee_path(emcee) %></td>
-        <td><%= link_to 'Destroy', emcee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Emcee', new_emcee_path %>
+<ul class="emcees">
+  <% @emcees.each do |emcee| %>
+    <li>
+      <%= gravatar_for emcee, size: 50 %>
+      <%= link_to emcee.name, emcee %>
+    </li>
+  <% end %>
+</ul>
