@@ -4,11 +4,13 @@ class EmceesController < ApplicationController
   before_action :set_emcee, only: %i[show edit update destroy]
   before_action :logged_in_emcee, only: [:index, :edit, :update]
   before_action :correct_emcee,   only: [:edit, :update]
+  before_action :admin_emcee,     only: :destroy
 
   # GET /emcees
   # GET /emcees.json
   def index
     @emcees = Emcee.all
+    @emcees = Emcee.paginate(page: params[:page])
   end
 
   # GET /emcees/1
@@ -32,7 +34,6 @@ class EmceesController < ApplicationController
         log_in @emcee
         format.html { redirect_to @emcee, notice: 'Emcee was successfully created.' }
         format.json { render :show, status: :created, location: @emcee }
-        redirect_back_or emcee
       else
         format.html { render :new }
         format.json { render json: @emcee.errors, status: :unprocessable_entity }
@@ -87,5 +88,9 @@ class EmceesController < ApplicationController
   def correct_emcee
     @emcee = Emcee.find(params[:id])
     redirect_to(root_url) && flash[:danger] = "what the hell bro" unless current_emcee?(@emcee)
+  end
+
+  def admin_emcee
+    redirect_to(root_url) unless current_emcee.admin?
   end
 end

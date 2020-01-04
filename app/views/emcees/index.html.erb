@@ -2,11 +2,19 @@
 <% provide(:title, 'All emcees') %>
 <h1>All Emcees</h1>
 
+<%= will_paginate %>
+
 <ul class="emcees">
   <% @emcees.each do |emcee| %>
     <li>
       <%= gravatar_for emcee, size: 50 %>
       <%= link_to emcee.name, emcee %>
+      <% if current_emcee.admin? && !current_emcee?(emcee) %>
+        | <%= link_to "delete", emcee, method: :delete,
+                            data: { confirm: "You sure?" } %>
+      <% end %>
     </li>
   <% end %>
 </ul>
+
+<%= will_paginate %>

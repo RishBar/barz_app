@@ -8,6 +8,7 @@ class EmceesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
+    log_in_as(@emcee, password: 'password123', remember_me: '1')
     get emcees_url
     assert_response :success
   end
@@ -52,16 +53,19 @@ class EmceesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get edit' do
+    log_in_as(@emcee, password: 'password123', remember_me: '1')
     get edit_emcee_url(@emcee)
     assert_response :success
   end
 
   test 'should update emcee' do
+    log_in_as(@emcee, password: 'password123', remember_me: '1')
     patch emcee_url(@emcee), params: { emcee: { email: @emcee.email, name: @emcee.name, password: 'dude123456' } }
     assert_redirected_to emcee_url(@emcee)
   end
 
   test 'should destroy emcee' do
+    log_in_as(@emcee, password: 'password123', remember_me: '1')
     assert_difference('Emcee.count', -1) do
       delete emcee_url(@emcee)
     end
