@@ -30,7 +30,7 @@ class EmceesController < ApplicationController
   def create
     @emcee = Emcee.new(emcee_params)
       if @emcee.save
-        EmceeMailer.account_activation(@emcee).deliver_now
+        @emcee.send_activation_email
         flash[:info] = "Please check your email to activate your account."
         redirect_to root_url
       else

@@ -22,7 +22,7 @@ class Emcee < ApplicationRecord
     SecureRandom.urlsafe_base64
   end
 
-  def self.remember
+  def remember
     self.remember_token = Emcee.new_token
     update_attribute(:remember_digest, Emcee.digest(remember_token))
   end
@@ -35,6 +35,15 @@ class Emcee < ApplicationRecord
 
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  def activate
+    update_attribute(:activated,    true)
+    update_attribute(:activated_at, Time.zone.now)
+  end
+
+  def send_activation_email
+    EmceeMailer.account_activation(self).deliver_now
   end
 
   private
