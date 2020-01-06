@@ -23,7 +23,7 @@ class EmceesControllerTest < ActionDispatch::IntegrationTest
       post emcees_url, params: { emcee: { email: 'example2@example.com', name: @emcee.name, password: 'dude123456' } }
     end
 
-    assert_redirected_to emcee_url(Emcee.last)
+    assert_redirected_to root_path
   end
 
   test 'should not create emcee if email is invalid' do

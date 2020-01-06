@@ -18,7 +18,7 @@ module SessionsHelper
       @current_emcee ||= Emcee.find_by(id: emcee_id)
     elsif (emcee_id = cookies.signed[:emcee_id])
       emcee = Emcee.find_by(id: emcee_id)
-      if emcee && emcee.authenticated?(cookies[:remember_token])
+      if emcee && emcee.authenticated?(:remember, cookies[:remember_token])
         log_in emcee
         @current_emcee = emcee
       end

@@ -22,6 +22,7 @@ class ActiveSupport::TestCase
   end
 end
 
+
 class ActionDispatch::IntegrationTest
 
   # Log in as a particular emcee.

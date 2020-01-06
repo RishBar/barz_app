@@ -29,16 +29,13 @@ class EmceesController < ApplicationController
   # POST /emcees.json
   def create
     @emcee = Emcee.new(emcee_params)
-    respond_to do |format|
       if @emcee.save
-        log_in @emcee
-        format.html { redirect_to @emcee, notice: 'Emcee was successfully created.' }
-        format.json { render :show, status: :created, location: @emcee }
+        EmceeMailer.account_activation(@emcee).deliver_now
+        flash[:info] = "Please check your email to activate your account."
+        redirect_to root_url
       else
-        format.html { render :new }
-        format.json { render json: @emcee.errors, status: :unprocessable_entity }
+        render 'new'
       end
-    end
   end
 
   # PATCH/PUT /emcees/1

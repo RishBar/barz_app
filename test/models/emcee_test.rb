@@ -57,6 +57,6 @@ class EmceeTest < ActiveSupport::TestCase
   end
 
   test "authenticated? should return false for a emcee with nil digest" do
-    assert_not @emcee.authenticated?('')
+    assert_not @emcee.authenticated?(:remember, '')
   end
 end
