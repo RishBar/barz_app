@@ -10,7 +10,9 @@ class EmceeMailerPreview < ActionMailer::Preview
 
   # Preview this email at http://localhost:3000/rails/mailers/emcee_mailer/password_reset
   def password_reset
-    EmceeMailer.password_reset
+    emcee = Emcee.first
+    emcee.reset_token = Emcee.new_token
+    EmceeMailer.password_reset(emcee)
   end
 
 end

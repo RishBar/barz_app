@@ -15,9 +15,8 @@ class EmceeMailer < ApplicationMailer
   #
   #   en.emcee_mailer.password_reset.subject
   #
-  def password_reset
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def password_reset(emcee)
+    @emcee = emcee
+    mail to: emcee.email, subject: "Password reset"
   end
 end
